@@ -6,7 +6,6 @@ import React from "react";
 
 export const Navbar: React.FC = () => {
   return (
-    // Use semi-transparent white/light background with blur. ADDED: border-b
     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-background/80 border-b border-gray-200 dark:border-white/10">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link

@@ -87,7 +87,7 @@ export const HeroSection: React.FC = () => {
       {/* The content div is centered within the section */}
       <div className="container relative z-10 mx-auto px-4 py-24 md:py-36">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Enhanced Travel Badge */}
+          {/* Travel Badge */}
           <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-teal-500/10 to-blue-500/10 text-primary mb-8 border border-primary/20 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
             <div className="flex items-center gap-2">
               <Plane className="h-4 w-4 animate-pulse text-blue-500" />
@@ -105,21 +105,21 @@ export const HeroSection: React.FC = () => {
             </span>
           </div>
 
-          {/* Main Heading (Unchanged, gradient text looks great on a light background) */}
+          {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-balance tracking-tight leading-tight">
             <span className="bg-gradient-to-r from-primary via-teal-500 to-blue-500 bg-clip-text text-transparent">
               Your Journey Starts Here
             </span>
           </h1>
 
-          {/* Description text must be dark on a light background */}
+          {/* Description text */}
           <p className="text-lg md:text-xl text-gray-700 dark:text-muted-foreground mb-10 max-w-2xl mx-auto text-pretty leading-relaxed">
             Create detailed travel itineraries, organize activities day by day,
             and never miss a moment of your adventure. All in one beautiful,
             easy-to-use platform.
           </p>
 
-          {/* Improved CTAs (Unchanged) */}
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link href="/signup">
               <Button
@@ -141,7 +141,7 @@ export const HeroSection: React.FC = () => {
             </Link>
           </div>
 
-          {/* Travel Destinations Gallery (Unchanged) */}
+          {/* Travel Destinations Gallery  */}
           <div className="max-w-4xl mx-auto">
             <p className="text-sm text-gray-500 dark:text-muted-foreground mb-6 font-medium">
               ✈️ Popular destinations our travelers love
@@ -163,7 +163,6 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-              {/* ... (Other cards remain the same) ... */}
               <div className="group relative h-24 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 <Image
                   src="/t2.jpg"

@@ -22,16 +22,14 @@ const steps = [
 export function HowItWorksSection() {
   return (
     <section className="relative py-24 overflow-hidden">
-      {/* Enhanced Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
       
-      {/* Enhanced Decorative Elements - More Visible */}
+      {/*  Decorative Elements  */}
       <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-teal-500/20 dark:from-blue-400/10 dark:to-teal-500/10 rounded-full blur-xl" />
       <div className="absolute bottom-40 left-20 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-500/20 dark:from-purple-400/10 dark:to-pink-500/10 rounded-full blur-2xl" />
       
       <div className="container mx-auto px-4 relative">
         <div className="max-w-5xl mx-auto">
-          {/* Improved Section Header - Smaller Sizes */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/10 text-primary mb-6 border border-primary/20">
               <span className="text-sm font-semibold">Simple Process</span>
@@ -46,11 +44,10 @@ export function HowItWorksSection() {
             </p>
           </div>
 
-          {/* Enhanced Steps */}
           <div className="relative">
             {steps.map((step, index) => (
               <div key={step.number} className="relative flex gap-8 items-start group mb-16 last:mb-0">
-                {/* Step Number with Clean Design */}
+                {/* Step Number */}
                 <div className="flex-shrink-0 relative">
                   <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500 to-blue-500 text-white flex items-center justify-center font-bold text-2xl shadow-lg group-hover:scale-105 group-hover:shadow-xl transition-all duration-300 relative z-10">
                     {step.number}
