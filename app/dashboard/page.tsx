@@ -147,7 +147,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/30">
-      <div className="p-6 md:p-8 max-w-7xl mx-auto">
+      <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -162,7 +162,7 @@ export default function DashboardPage() {
           <Button
             variant="outline"
             onClick={handleLogout}
-            className="flex items-center gap-2"
+            className="items-center gap-2 hidden md:flex"
           >
             <LogOut className="h-4 w-4" />
             Logout

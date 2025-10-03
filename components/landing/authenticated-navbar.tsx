@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Compass, LogOut } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Compass, LogOut, Menu, LayoutDashboard } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 
 export const AuthenticatedNavbar = () => {
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -38,14 +41,15 @@ export const AuthenticatedNavbar = () => {
           </span>
         </Link>
 
-        <div className="flex items-center gap-2">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-2">
           <ThemeToggle />
 
           {/* Dashboard Link */}
           <Link href="/dashboard">
             <Button
               variant="ghost"
-              className="text-base font-medium text-gray-600 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+              className="text-base font-medium text-gray-600 hover:bg-primary/10 hover:text-primary transition-all duration-300 "
             >
               Dashboard
             </Button>
@@ -60,6 +64,56 @@ export const AuthenticatedNavbar = () => {
             <LogOut className="h-4 w-4" />
             Logout
           </Button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-64 p-0">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center gap-2 px-6 py-5 border-b border-border">
+                  <Compass className="h-6 w-6 text-primary" />
+                  <span className="text-xl font-bold text-foreground">Voyagr</span>
+                </div>
+
+                <nav className="flex-1 px-4 py-6 space-y-1">
+                  <Link href="/dashboard" onClick={() => setOpen(false)}>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start gap-3 text-muted-foreground hover:text-foreground hover:bg-accent"
+                    >
+                      <LayoutDashboard className="h-5 w-5" />
+                      Dashboard
+                    </Button>
+                  </Link>
+                </nav>
+
+                <div className="px-4 py-4 border-t border-border space-y-2">
+                  <div className="flex items-center justify-between px-3 py-2">
+                    <span className="text-sm text-muted-foreground">Theme</span>
+                    <ThemeToggle />
+                  </div>
+                  
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      setOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full justify-start gap-3 text-muted-foreground hover:text-foreground"
+                  >
+                    <LogOut className="h-5 w-5" />
+                    Logout
+                  </Button>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>

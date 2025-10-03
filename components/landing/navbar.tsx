@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Compass } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Compass, Menu, LogIn, UserPlus } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import React from "react";
+import React, { useState } from "react";
 
 export const Navbar: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-background/80 border-b border-gray-200 dark:border-white/10">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -20,7 +23,9 @@ export const Navbar: React.FC = () => {
             Voyagr
           </span>
         </Link>
-        <div className="flex items-center gap-4">
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-4">
           <ThemeToggle />
           <Link href="/login">
             <Button
@@ -35,6 +40,53 @@ export const Navbar: React.FC = () => {
               Get Started
             </Button>
           </Link>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-64 p-0">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center gap-2 px-6 py-5 border-b border-border">
+                  <Compass className="h-6 w-6 text-primary" />
+                  <span className="text-xl font-bold text-foreground">Voyagr</span>
+                </div>
+
+                <nav className="flex-1 px-4 py-6 space-y-3">
+                  <Link href="/login" onClick={() => setOpen(false)}>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start gap-3 text-muted-foreground hover:text-foreground hover:bg-accent"
+                    >
+                      <LogIn className="h-5 w-5" />
+                      Log In
+                    </Button>
+                  </Link>
+                  
+                  <Link href="/signup" onClick={() => setOpen(false)}>
+                    <Button
+                      className="w-full justify-start gap-3 bg-gradient-to-r from-primary to-teal-500 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+                    >
+                      <UserPlus className="h-5 w-5" />
+                      Get Started
+                    </Button>
+                  </Link>
+                </nav>
+
+                <div className="px-4 py-4 border-t border-border">
+                  <div className="flex items-center justify-between px-3 py-2">
+                    <span className="text-sm text-muted-foreground">Theme</span>
+                    <ThemeToggle />
+                  </div>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>

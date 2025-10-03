@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     if (!destination || !startDate || !endDate) {
       return NextResponse.json(
-        { error: "Missing required fields: destination, startDate, endDate" }, 
+        { error: "Missing required fields: destination, startDate, endDate" },
         { status: 400 }
       );
     }
@@ -26,11 +26,12 @@ export async function POST(request: NextRequest) {
         endDate: new Date(endDate),
         userId: session.user.id,
         activities: {
-          create: activities?.map((activity: any) => ({
-            day: activity.day,
-            time: activity.time,
-            description: activity.description,
-          })) || [],
+          create:
+            activities?.map((activity: any) => ({
+              day: activity.day,
+              time: activity.time,
+              description: activity.description,
+            })) || [],
         },
       },
       include: {
@@ -44,7 +45,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error creating trip:", error);
     return NextResponse.json(
-      { error: "Failed to create trip" }, 
+      { error: "Failed to create trip" },
       { status: 500 }
     );
   }
@@ -75,7 +76,7 @@ export async function GET() {
   } catch (error) {
     console.error("Error fetching trips:", error);
     return NextResponse.json(
-      { error: "Failed to fetch trips" }, 
+      { error: "Failed to fetch trips" },
       { status: 500 }
     );
   }

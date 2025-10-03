@@ -97,7 +97,7 @@ export default async function TripPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-4 sm:px-6 py-8 max-w-4xl">
         <Link href="/">
           <Button variant="ghost" className="mb-6 hover:bg-white/50">
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -122,7 +122,7 @@ export default async function TripPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4 sm:p-6 md:p-8 mb-6">
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-4 text-slate-600 mb-4">

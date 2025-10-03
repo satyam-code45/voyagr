@@ -81,7 +81,7 @@ export default async function TripPage({ params }: { params: { id: string } }) {
     ) + 1;
 
   return (
-    <div className="p-6 md:p-8 max-w-5xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 max-w-5xl mx-auto">
       <Link href="/dashboard">
         <Button variant="ghost" className="mb-6">
           <ArrowLeft className="h-4 w-4 mr-2" />
@@ -107,7 +107,7 @@ export default async function TripPage({ params }: { params: { id: string } }) {
       </div>
 
       <div className="bg-card rounded-xl shadow-sm border border-border p-6 md:p-8 mb-8">
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex flex-col md:flex-row  items-start justify-between mb-6">
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-6">
               <div className="flex items-center gap-2">
@@ -151,7 +151,9 @@ export default async function TripPage({ params }: { params: { id: string } }) {
               </Card>
             )}
           </div>
+          <div className="mt-5 md:mt-0">
           <ShareButton tripId={trip.id} destination={trip.destination} />
+          </div>
         </div>
 
         <div className="flex gap-6 pt-6 border-t border-border">

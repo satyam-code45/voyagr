@@ -109,21 +109,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isAuthenticated = fals
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-balance tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-balance tracking-tight leading-tight px-4 sm:px-0">
             <span className="bg-gradient-to-r from-primary via-teal-500 to-blue-500 bg-clip-text text-transparent">
               Your Journey Starts Here
             </span>
           </h1>
 
           {/* Description text */}
-          <p className="text-lg md:text-xl text-gray-700 dark:text-muted-foreground mb-10 max-w-2xl mx-auto text-pretty leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-muted-foreground mb-10 max-w-2xl mx-auto text-pretty leading-relaxed px-4 sm:px-0">
             Create detailed travel itineraries, organize activities day by day,
             and never miss a moment of your adventure. All in one beautiful,
             easy-to-use platform.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 mb-16 px-4 sm:px-0">
             {isAuthenticated ? (
               <>
                 <Link href="/dashboard">

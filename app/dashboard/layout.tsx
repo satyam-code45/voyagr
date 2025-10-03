@@ -22,7 +22,7 @@ export default async function DashboardLayout({
       <div className="flex flex-col flex-1 overflow-hidden">
         <TopBar user={session.user} />
 
-        <main className="flex-1 overflow-y-auto">{children}</main>
+        <main className="flex-1 overflow-y-auto px-4 md:px-0">{children}</main>
       </div>
     </div>
   );

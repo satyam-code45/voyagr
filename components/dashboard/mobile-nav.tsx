@@ -6,10 +6,9 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Globe, LayoutDashboard, Menu, Plus, Plane, Settings } from "lucide-react"
+import { Globe,  Menu, Plus, Plane, Settings } from "lucide-react"
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "My Trips", href: "/dashboard", icon: Plane },
 ]
 
@@ -28,7 +27,7 @@ export function MobileNav() {
         <div className="flex flex-col h-full">
           <div className="flex items-center gap-2 px-6 py-5 border-b border-border">
             <Globe className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold text-foreground">TravelPlan</span>
+            <span className="text-xl font-bold text-foreground">Voyagr</span>
           </div>
 
           <nav className="flex-1 px-4 py-6 space-y-1">

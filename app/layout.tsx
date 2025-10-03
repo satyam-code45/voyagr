@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   title: "TravelPlan - Plan Your Perfect Journey",
   description:
     "Create detailed travel itineraries and organize your adventures",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({
