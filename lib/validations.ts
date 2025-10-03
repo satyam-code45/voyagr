@@ -13,16 +13,6 @@ export const passwordSchema = z
   .min(6, "Password must be at least 6 characters")
   .max(100, "Password must be less than 100 characters");
 
-// Strong password validation (for signup)
-export const strongPasswordSchema = z
-  .string()
-  .min(8, "Password must be at least 8 characters")
-  .max(100, "Password must be less than 100 characters")
-  .regex(/^(?=.*[a-z])/, "Password must contain at least one lowercase letter")
-  .regex(/^(?=.*[A-Z])/, "Password must contain at least one uppercase letter")
-  .regex(/^(?=.*\d)/, "Password must contain at least one number")
-  .regex(/^(?=.*[@$!%*?&])/, "Password must contain at least one special character (@$!%*?&)");
-
 export const nameSchema = z
   .string()
   .min(1, "Name is required")
@@ -32,7 +22,7 @@ export const nameSchema = z
 // Auth schemas
 export const signupSchema = z.object({
   email: emailSchema,
-  password: passwordSchema, // Using regular password for better UX, change to strongPasswordSchema for stronger validation
+  password: passwordSchema, 
   name: nameSchema.optional(),
 });
 

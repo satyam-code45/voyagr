@@ -16,7 +16,6 @@ export interface JwtPayload {
   exp?: number;
 }
 
-// JWT Secret - must be provided in environment variables
 const JWT_SECRET =
   process.env.JWT_SECRET ||
   "your-super-secret-jwt-key-change-in-production-must-be-at-least-32-characters-long";

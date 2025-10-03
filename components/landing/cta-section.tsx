@@ -51,7 +51,7 @@ export function CTASection({ isAuthenticated = false }: CTASectionProps) {
             </Link>
           </div>
 
-          {/* Enhanced Benefits */}
+          {/*  Benefits */}
           <div className="flex flex-wrap items-center justify-center gap-8 text-lg">
             {benefits.map((benefit, index) => (
               <div

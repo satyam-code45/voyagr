@@ -15,7 +15,6 @@ export function ShareButton({ tripId, destination }: ShareButtonProps) {
   const handleShare = async () => {
     const url = `${window.location.origin}/trips/${tripId}`;
 
-    // Try native share API first (mobile)
     if (navigator.share) {
       try {
         await navigator.share({
