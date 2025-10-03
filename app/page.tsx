@@ -12,7 +12,6 @@ import type { User } from "@/lib/auth";
 
 export default function LandingPage() {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     checkAuth();
@@ -32,14 +31,12 @@ export default function LandingPage() {
     } catch (error) {
       console.error("Auth check error:", error);
       // If there's an error, user stays null (which is fine)
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {user ? <AuthenticatedNavbar user={user} /> : <Navbar />}
+      {user ? <AuthenticatedNavbar /> : <Navbar />}
       <HeroSection isAuthenticated={!!user} />
       <FeaturesSection />
       <HowItWorksSection />

@@ -3,17 +3,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Compass, LogOut, User } from "lucide-react";
+import { Compass, LogOut } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import type { User as UserType } from "@/lib/auth";
 
-interface AuthenticatedNavbarProps {
-  user: UserType;
-}
 
-export const AuthenticatedNavbar: React.FC<AuthenticatedNavbarProps> = ({
-  user,
-}) => {
+export const AuthenticatedNavbar = () => {
   const router = useRouter();
 
   const handleLogout = async () => {

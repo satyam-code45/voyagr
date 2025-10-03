@@ -24,7 +24,8 @@ export function ShareButton({ tripId, destination }: ShareButtonProps) {
         });
         return;
       } catch (error) {
-        // User cancelled or share failed, fall back to clipboard
+        console.log(error);
+        
       }
     }
 

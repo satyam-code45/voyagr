@@ -79,6 +79,7 @@ export async function getSession(): Promise<{ user: User } | null> {
 
     return { user };
   } catch (error) {
+    console.log(error);
     return null;
   }
 }
