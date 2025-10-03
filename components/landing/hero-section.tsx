@@ -11,7 +11,11 @@ import {
 } from "lucide-react";
 import React from "react";
 
-export const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  isAuthenticated?: boolean;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = ({ isAuthenticated = false }) => {
   return (
     <section className="relative min-h-[calc(100vh)] flex items-center justify-center overflow-hidden">
       {/* Travel Background Images */}
@@ -121,24 +125,49 @@ export const HeroSection: React.FC = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <Link href="/signup">
-              <Button
-                size="lg"
-                className="text-base px-8 py-3 shadow-xl shadow-primary/25 bg-gradient-to-r from-primary via-teal-500 to-blue-500 hover:shadow-2xl hover:shadow-primary/40 transform hover:scale-105 transition-all duration-300 border-0"
-              >
-                Plan Your Journey
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-base px-8 py-3 border-2 border-primary/30 bg-white/60 backdrop-blur-sm hover:bg-primary/5 hover:border-primary/60 transform hover:scale-105 transition-all duration-300"
-              >
-                View Demo
-              </Button>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <Link href="/dashboard">
+                  <Button
+                    size="lg"
+                    className="text-base px-8 py-3 shadow-xl shadow-primary/25 bg-gradient-to-r from-primary via-teal-500 to-blue-500 hover:shadow-2xl hover:shadow-primary/40 transform hover:scale-105 transition-all duration-300 border-0"
+                  >
+                    Go to Dashboard
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/dashboard/create">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-base px-8 py-3 border-2 border-primary/30 bg-white/60 backdrop-blur-sm hover:bg-primary/5 hover:border-primary/60 transform hover:scale-105 transition-all duration-300"
+                  >
+                    Create New Trip
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/signup">
+                  <Button
+                    size="lg"
+                    className="text-base px-8 py-3 shadow-xl shadow-primary/25 bg-gradient-to-r from-primary via-teal-500 to-blue-500 hover:shadow-2xl hover:shadow-primary/40 transform hover:scale-105 transition-all duration-300 border-0"
+                  >
+                    Plan Your Journey
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/login">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-base px-8 py-3 border-2 border-primary/30 bg-white/60 backdrop-blur-sm hover:bg-primary/5 hover:border-primary/60 transform hover:scale-105 transition-all duration-300"
+                  >
+                    View Demo
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Travel Destinations Gallery  */}

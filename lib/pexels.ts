@@ -1,6 +1,6 @@
 import { createClient } from "pexels";
 
-const client = createClient(process.env.PEXELS_API_KEY!);
+const client = createClient(process.env.NEXT_PUBLIC_PEXELS_API_KEY!);
 
 export async function getDestinationImage(query: string) {
   try {

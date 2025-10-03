@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -32,8 +33,12 @@ function getTripDuration(startDate: Date | string, endDate: Date | string) {
   return days === 1 ? "1 day" : `${days} days`;
 }
 
-export async function TripCard({ trip }: TripCardProps) {
-  const imageUrl = await getDestinationImage(trip.destination);
+export function TripCard({ trip }: TripCardProps) {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    getDestinationImage(trip.destination).then(setImageUrl);
+  }, [trip.destination]);
 
   return (
     <Link href={`/dashboard/trips/${trip.id}`}>

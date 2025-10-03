@@ -1,49 +1,54 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { createUser, createSession, setSessionCookie } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { hashPassword, createSession, setSessionCookie } from "@/lib/auth";
+import { signupSchema, formatValidationError } from "@/lib/validations";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { email, password, name } = await request.json();
+    const body = await request.json();
 
-    if (!email || !password) {
+    // Validate input with Zod
+    const validation = signupSchema.safeParse(body);
+    
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Email and password are required" },
+        formatValidationError(validation.error),
         { status: 400 }
       );
     }
 
+    const { email, password, name } = validation.data;
+
+    // Check if user already exists
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
 
     if (existingUser) {
       return NextResponse.json(
-        { error: "User already exists" },
-        { status: 400 }
+        { error: "User with this email already exists" },
+        { status: 409 }
       );
     }
 
-    const hashedPassword = await hashPassword(password);
+    // Create user with bcrypt hashing
+    const user = await createUser(email, password, name);
 
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-        name,
-      },
-    });
-
-    const token = await createSession(user.id);
+    // Create JWT session
+    const token = await createSession(user.id, user.email);
     await setSessionCookie(token);
 
-    return NextResponse.json({
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
+    return NextResponse.json(
+      {
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+        },
+        message: "Account created successfully"
       },
-    });
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Signup error:", error);
     return NextResponse.json(

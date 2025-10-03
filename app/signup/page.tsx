@@ -30,18 +30,7 @@ export default function SignupPage() {
     setIsLoading(true);
     setError("");
 
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters");
-      setIsLoading(false);
-      return;
-    }
-
     try {
-      // Simulate API call for demo
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Uncomment when you have actual API
-      /*
       const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,7 +42,7 @@ export default function SignupPage() {
       if (!response.ok) {
         throw new Error(data.error || "Failed to create account");
       }
-      */
+      
 
       router.push("/dashboard");
       router.refresh();

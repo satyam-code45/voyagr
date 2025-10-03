@@ -22,21 +22,17 @@ import type { Trip, Activity } from "@/lib/types";
 import { getDestinationImage } from "@/lib/pexels";
 import { getWeather } from "@/lib/weather";
 import { ShareButton } from "@/components/share-button";
+import { prisma } from "@/lib/prisma";
 
 async function getTrip(id: string): Promise<Trip | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const response = await fetch(`${baseUrl}/api/trips/${id}`, {
-      cache: "no-store",
+    const trip = await prisma.trip.findFirst({
+      where: { id },
+      include: { activities: true },
     });
-
-    if (!response.ok) {
-      return null;
-    }
-
-    return response.json();
+    return trip as Trip | null;
   } catch (error) {
-    console.error("[v0] Error fetching trip:", error);
+    console.error("Error fetching trip:", error);
     return null;
   }
 }
@@ -82,7 +78,8 @@ function getDayDate(startDate: Date | string, dayNumber: number) {
 }
 
 export default async function TripPage({ params }: { params: { id: string } }) {
-  const trip = await getTrip(params.id);
+  const { id } = await params;
+  const trip = await getTrip(id);
 
   if (!trip) {
     notFound();
@@ -148,7 +145,7 @@ export default async function TripPage({ params }: { params: { id: string } }) {
                         <span className="text-4xl">{weather.icon}</span>
                         <div>
                           <div className="text-2xl font-bold text-slate-900">
-                            {weather.temperature}°F
+                            {weather.temperature}°C
                           </div>
                           <div className="text-sm text-slate-600">
                             {weather.condition}

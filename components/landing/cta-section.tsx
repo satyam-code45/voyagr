@@ -4,7 +4,11 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 const benefits = ["Free forever", "No credit card", "Unlimited trips"];
 
-export function CTASection() {
+interface CTASectionProps {
+  isAuthenticated?: boolean;
+}
+
+export function CTASection({ isAuthenticated = false }: CTASectionProps) {
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-teal-500/10 to-blue-500/10" />
@@ -36,12 +40,12 @@ export function CTASection() {
 
           {/* CTA Button */}
           <div className="mb-10">
-            <Link href="/signup">
+            <Link href={isAuthenticated ? "/dashboard" : "/signup"}>
               <Button
                 size="lg"
                 className="text-base px-12 py-4 shadow-xl shadow-primary/30 bg-gradient-to-r from-primary via-teal-500 to-blue-500 hover:shadow-2xl hover:shadow-primary/50 transform hover:scale-105 transition-all duration-300 border-0"
               >
-                Create Free Account
+                {isAuthenticated ? "Go to Dashboard" : "Create Free Account"}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
